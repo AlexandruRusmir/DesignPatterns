@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+include 'Book.php';
+
 $discoTitanic = new Book('Disco Titanic');
 
 $discoTitanic->createNewParagraph('Paragraph 1');
