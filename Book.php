@@ -38,18 +38,21 @@ class Book
 
     public function __toString(): string
     {
-        $returnMessage = 'Book name: ' . $this->bookName . '\n';
+        $returnMessage = 'Book name: ' . $this->bookName . '<br>';
 
+        $returnMessage .= 'Paragraphs:' . '<br>';
         foreach ($this->paragraphs as $paragraph) {
-            $returnMessage .= 'Paragraph: ' . $paragraph . '\n';
+            $returnMessage .= 'Paragraph: ' . $paragraph . '<br>';
         }
 
+        $returnMessage .= 'Images:' . '<br>';
         foreach ($this->images as $image) {
-            $returnMessage .= 'Image: ' . $image . '\n';
+            $returnMessage .= 'Image: ' . $image . '<br>';
         }
 
+        $returnMessage .= 'Tables:' . '<br>';
         foreach ($this->tables as $table) {
-            $returnMessage .= 'Table: ' . $table . '\n';
+            $returnMessage .= 'Table: ' . $table . '<br>';
         }
 
         return $returnMessage;
