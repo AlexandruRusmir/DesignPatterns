@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-class Table
+include_once 'Element.php';
+
+class Table implements Element
 {
     /** @var string|null  */
     private ?string $title;

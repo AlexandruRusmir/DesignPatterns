@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-class Paragraph
+include_once 'Element.php';
+
+class Paragraph implements Element
 {
     /** @var string|null  */
     private ?string $text;

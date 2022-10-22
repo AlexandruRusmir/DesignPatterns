@@ -11,14 +11,8 @@ class SubChapter
     /** @var string|null  */
     private ?string $name;
 
-    /** @var Image[]|null  */
-    private ?array $images;
-
-    /** @var Paragraph[]|null  */
-    private ?array $paragraphs;
-
-    /** @var Table[]|null  */
-    private ?array $tables;
+    /** @var Element[]|null  */
+    private ?array $elements;
 
     public function __construct(string $name)
     {
@@ -28,40 +22,28 @@ class SubChapter
     public function createNewImage(string $imageName): void
     {
         $image = new Image($imageName);
-        $this->images[] = $image;
+        $this->elements[] = $image;
     }
 
     public function createNewParagraph(string $paragraphName): void
     {
         $paragraph = new Paragraph($paragraphName);
-        $this->paragraphs[] = $paragraph;
+        $this->elements[] = $paragraph;
     }
 
     public function createNewTable(string $tableName): void
     {
         $table = new Table($tableName);
-        $this->tables[] = $table;
+        $this->elements[] = $table;
     }
 
     public function print(): void
     {
         echo 'Subchapter name: ' . $this->name . '<br>';
 
-        if (isset($this->images)) {
-            foreach ($this->images as $image) {
-                $image->print();
-            }
-        }
-
-        if (isset($this->paragraphs)) {
-            foreach ($this->paragraphs as $paragraph) {
-                $paragraph->print();
-            }
-        }
-
-        if (isset($this->tables)) {
-            foreach ($this->tables as $table) {
-                $table->print();
+        if (isset($this->elements)) {
+            foreach ($this->elements as $element) {
+                $element->print();
             }
         }
     }

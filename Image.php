@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-class Image
+include_once 'Element.php';
+
+class Image implements Element
 {
     /** @var string|null  */
     private ?string $imageName;
