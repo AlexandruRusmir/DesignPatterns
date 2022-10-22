@@ -2,59 +2,59 @@
 
 declare(strict_types=1);
 
+include_once 'Chapter.php';
+include_once 'Author.php';
+
 class Book
 {
     /** @var string|null  */
-    private ?string $bookName;
+    private ?string $title;
 
-    /** @var string[]|null  */
-    private ?array $paragraphs;
+    /** @var Chapter[]|null  */
+    private ?array $chapters;
 
-    /** @var string[]|null  */
-    private ?array $images;
+    /** @var Author|null  */
+    private ?Author $author;
 
-    /** @var string[]|null  */
-    private ?array $tables;
-
-    public function __construct(string $bookName)
+    public function __construct(string $title)
     {
-        $this->bookName = $bookName;
+        $this->title = $title;
     }
 
-    public function createNewParagraph(string $paragraph): void
+    public function createNewChapter(string $chapterName): int
     {
-        $this->paragraphs[] = $paragraph;
+        $chapter = new Chapter($chapterName);
+        $this->chapters[] = $chapter;
+
+        return count($this->chapters) - 1;
     }
 
-    public function createNewImage(string $image): void
+    public function addAuthor(Author $author): void
     {
-        $this->images[] = $image;
+        $this->author = $author;
     }
 
-    public function createNewTable(string $table): void
+    public function getAuthor(): ?Author
     {
-        $this->tables[] = $table;
+        return $this->author ?? null;
     }
 
-    public function __toString(): string
+    public function getChapter(int $index): ?Chapter
     {
-        $returnMessage = 'Book name: ' . $this->bookName . '<br>';
+       return $this->chapters[$index] ?? null;
+    }
 
-        $returnMessage .= 'Paragraphs:' . '<br>';
-        foreach ($this->paragraphs as $paragraph) {
-            $returnMessage .= 'Paragraph: ' . $paragraph . '<br>';
+    public function print(): void
+    {
+        echo 'Book name: ' . $this->title . '<br>';
+
+        $this->author->print();
+
+        if (isset($chapters)) {
+            foreach ($this->chapters as $chapter) {
+                $chapter->print();
+            }
         }
 
-        $returnMessage .= 'Images:' . '<br>';
-        foreach ($this->images as $image) {
-            $returnMessage .= 'Image: ' . $image . '<br>';
-        }
-
-        $returnMessage .= 'Tables:' . '<br>';
-        foreach ($this->tables as $table) {
-            $returnMessage .= 'Table: ' . $table . '<br>';
-        }
-
-        return $returnMessage;
     }
 }
