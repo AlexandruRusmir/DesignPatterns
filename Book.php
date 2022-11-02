@@ -2,57 +2,42 @@
 
 declare(strict_types=1);
 
-include_once 'Chapter.php';
+include_once 'Section.php';
 include_once 'Author.php';
 
-class Book
+class Book extends Section
 {
-    /** @var string|null  */
-    private ?string $title;
+    /** @var Author[]|null  */
+    protected ?array $authors;
 
-    /** @var Chapter[]|null  */
-    private ?array $chapters;
-
-    /** @var Author|null  */
-    private ?Author $author;
-
-    public function __construct(string $title)
+    public function addContent(Element $element): void
     {
-        $this->title = $title;
-    }
-
-    public function createNewChapter(string $chapterName): int
-    {
-        $chapter = new Chapter($chapterName);
-        $this->chapters[] = $chapter;
-
-        return count($this->chapters) - 1;
+        parent::add($element);
     }
 
     public function addAuthor(Author $author): void
     {
-        $this->author = $author;
+        $this->authors[] = $author;
     }
 
-    public function getAuthor(): ?Author
+    public function getAuthors(): ?array
     {
-        return $this->author ?? null;
-    }
-
-    public function getChapter(int $index): ?Chapter
-    {
-       return $this->chapters[$index] ?? null;
+        return $this->authors ?? null;
     }
 
     public function print(): void
     {
-        echo 'Book name: ' . $this->title . '<br>';
+        echo 'Book name: ' . $this->name . '<br>';
 
-        $this->author->print();
+        if (isset($this->authors)) {
+            foreach ($this->authors as $author) {
+                $author->print();
+            }
+        }
 
-        if (isset($chapters)) {
-            foreach ($this->chapters as $chapter) {
-                $chapter->print();
+        if (isset($this->elements)) {
+            foreach ($this->elements as $element) {
+                $element->print();
             }
         }
 

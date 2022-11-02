@@ -5,22 +5,22 @@ declare(strict_types=1);
 include_once 'Book.php';
 include_once 'Author.php';
 
-$discoTitanic = new Book('Disco Titanic');
-$author = new Author('Vasile Gheorghe');
+$noapteBuna = new Book('Noapte buna, copii');
+$author = new Author('Radu Pavel Gheo');
+$noapteBuna->addAuthor($author);
 
-$discoTitanic->addAuthor($author);
+$cap1 = new Section('Capitolul 1');
+$cap11 = new Section('Capitolul 1.1');
+$cap111 = new Section('Capitolul 1.1.1');
+$cap1111 = new Section('Subchapter 1.1.1.1');
+$noapteBuna->addContent(new Paragraph('Multumesc celor care ...'));
+$noapteBuna->addContent($cap1);
+$cap1->add(new Paragraph('Moto capitol'));
+$cap1->add($cap11);
+$cap11->add(new Paragraph('Text from subchapter 1.1'));
+$cap11->add($cap111);
+$cap111->add(new Paragraph('Text from subchapter 1.1.1'));
+$cap111->add($cap1111);
+$cap1111->add(new Image('Image subchapter 1.1.1.1'));
 
-$indexChapterOne = $discoTitanic->createNewChapter("Capitolul 1");
-$chp1 = $discoTitanic->getChapter($indexChapterOne);
-$indexSubChapterOneOne = $chp1->createNewSubChapter('Subcapitolul 1.1');
-$scOneOne = $chp1->getSubChapter($indexSubChapterOneOne);
-
-$scOneOne->createNewParagraph('Paragraph1');
-$scOneOne->createNewParagraph('Paragraph 2');
-$scOneOne->createNewParagraph('Paragraph 3');
-$scOneOne->createNewImage('Image 1');
-$scOneOne->createNewParagraph('Paragraph 4');
-$scOneOne->createNewTable('Table 1');
-$scOneOne->createNewParagraph('Paragraph 5');
-
-$scOneOne->print();
+$noapteBuna->print();

@@ -18,4 +18,20 @@ class Table implements Element
     {
         echo 'Table title: ' . $this->title . '<br>';
     }
+
+    public function add(Element $element): void
+    {
+        // TODO: Implement add() method.
+    }
+
+    public function remove(Element $element): void
+    {
+        // TODO: Implement remove() method.
+    }
+
+    public function get(int $position): ?Element
+    {
+        // TODO: Implement get() method.
+        return null;
+    }
 }
