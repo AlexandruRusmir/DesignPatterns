@@ -5,28 +5,26 @@ declare(strict_types=1);
 include_once 'Book.php';
 include_once 'Author.php';
 include_once 'ImageProxy.php';
+include_once 'AlignLeft.php';
+include_once 'AlignCenter.php';
+include_once 'AlignRight.php';
 
-$startTime = floor(microtime(true) * 1000);
-$img1 = new ImageProxy('Pamela Anderson');
-$img2 = new ImageProxy('Kim Kardashian');
-$img3 = new ImageProxy('Kirby Griffin');
-$playboyS1 = new Section('Front Cover');
-$playboyS1->add($img1);
-$playboyS2 = new Section('Summer girls');
-$playboyS2->add($img2);
-$playboyS2->add($img3);
-$playboy = new Book('Playboy');
-$playboy->addContent($playboyS1);
-$playboy->addContent($playboyS2);
-$endTime = floor(microtime(true) * 1000);
-echo 'It took ' . ($endTime - $startTime) . ' milliseconds <br>';
+$cap1 = new Section('Capitolul 1');
+$p1 = new Paragraph('Paragraph 1');
+$cap1->add($p1);
 
-$startTime = floor(microtime(true) * 1000);
-$playboyS1->print();
-$endTime = floor(microtime(true) * 1000);
-echo 'It took ' . ($endTime - $startTime) . ' milliseconds <br>';
+$p2 = new Paragraph('Paragraph 2');
+$cap1->add($p2);
+$p3 = new Paragraph('Paragraph 3');
+$cap1->add($p3);
+$p4 = new Paragraph('Paragraph 4');
+$cap1->add($p4);
 
-$startTime = floor(microtime(true) * 1000);
-$playboyS1->print();
-$endTime = floor(microtime(true) * 1000);
-echo 'It took ' . ($endTime - $startTime) . ' milliseconds <br>';
+echo 'Without alingment: <br>';
+$cap1->print();
+
+$p1->setAlignStrategy(new AlignLeft());
+$p2->setAlignStrategy(new AlignCenter());
+$p3->setAlignStrategy(new AlignRight());
+echo 'With alingment: <br>';
+$cap1->print();
