@@ -4,20 +4,34 @@ declare(strict_types=1);
 
 include_once 'Element.php';
 
-class Image implements Element
+class ImageProxy implements Element
 {
     /** @var string|null  */
-    private ?string $url;
+    public ?string $url;
+
+    public $dim;
+
+    /** @var Image|null  */
+    public ?Image $realImage;
 
     public function __construct(string $url)
     {
-        sleep(5);
         $this->url = $url;
     }
 
-    public function print(): void
+    public function loadImage(): ?Image
     {
-        echo 'Image name: ' . $this->url . '<br>';
+        if (!isset($this->realImage)) {
+            $this->realImage = new Image($this->url);
+        }
+
+        return $this->realImage;
+    }
+
+    public function print()
+    {
+        $image = $this->loadImage();
+        $image->print();
     }
 
     public function add(Element $element): void

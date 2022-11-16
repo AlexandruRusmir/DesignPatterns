@@ -4,23 +4,29 @@ declare(strict_types=1);
 
 include_once 'Book.php';
 include_once 'Author.php';
+include_once 'ImageProxy.php';
 
-$noapteBuna = new Book('Noapte buna, copii');
-$author = new Author('Radu Pavel Gheo');
-$noapteBuna->addAuthor($author);
+$startTime = floor(microtime(true) * 1000);
+$img1 = new ImageProxy('Pamela Anderson');
+$img2 = new ImageProxy('Kim Kardashian');
+$img3 = new ImageProxy('Kirby Griffin');
+$playboyS1 = new Section('Front Cover');
+$playboyS1->add($img1);
+$playboyS2 = new Section('Summer girls');
+$playboyS2->add($img2);
+$playboyS2->add($img3);
+$playboy = new Book('Playboy');
+$playboy->addContent($playboyS1);
+$playboy->addContent($playboyS2);
+$endTime = floor(microtime(true) * 1000);
+echo 'It took ' . ($endTime - $startTime) . ' milliseconds <br>';
 
-$cap1 = new Section('Capitolul 1');
-$cap11 = new Section('Capitolul 1.1');
-$cap111 = new Section('Capitolul 1.1.1');
-$cap1111 = new Section('Subchapter 1.1.1.1');
-$noapteBuna->addContent(new Paragraph('Multumesc celor care ...'));
-$noapteBuna->addContent($cap1);
-$cap1->add(new Paragraph('Moto capitol'));
-$cap1->add($cap11);
-$cap11->add(new Paragraph('Text from subchapter 1.1'));
-$cap11->add($cap111);
-$cap111->add(new Paragraph('Text from subchapter 1.1.1'));
-$cap111->add($cap1111);
-$cap1111->add(new Image('Image subchapter 1.1.1.1'));
+$startTime = floor(microtime(true) * 1000);
+$playboyS1->print();
+$endTime = floor(microtime(true) * 1000);
+echo 'It took ' . ($endTime - $startTime) . ' milliseconds <br>';
 
-$noapteBuna->print();
+$startTime = floor(microtime(true) * 1000);
+$playboyS1->print();
+$endTime = floor(microtime(true) * 1000);
+echo 'It took ' . ($endTime - $startTime) . ' milliseconds <br>';
