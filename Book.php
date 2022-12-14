@@ -25,6 +25,11 @@ class Book extends Section
         return $this->authors ?? null;
     }
 
+    public function accept(Visitor $visitor): void
+    {
+        $visitor->visitBook($this);
+    }
+
     public function print(): void
     {
         echo 'Book name: ' . $this->name . '<br>';

@@ -19,6 +19,11 @@ class ImageProxy implements Element
         $this->url = $url;
     }
 
+    public function accept(Visitor $visitor): void
+    {
+        $visitor->visitImageProxy($this);
+    }
+
     public function loadImage(): ?Image
     {
         if (!isset($this->realImage)) {

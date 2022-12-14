@@ -31,6 +31,11 @@ class Paragraph implements Element
         $this->alignStrategy = $alignStrategy;
     }
 
+    public function accept(Visitor $visitor): void
+    {
+        $visitor->visitParagraph($this);
+    }
+
     public function print(): void
     {
         if (isset($this->alignStrategy)) {

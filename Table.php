@@ -14,6 +14,11 @@ class Table implements Element
         $this->title = $title;
     }
 
+    public function accept(Visitor $visitor): void
+    {
+        $visitor->visitTable($this);
+    }
+
     public function print(): void
     {
         echo 'Table title: ' . $this->title . '<br>';

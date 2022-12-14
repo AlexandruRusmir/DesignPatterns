@@ -20,6 +20,11 @@ class Image implements Element
         echo 'Image name: ' . $this->url . '<br>';
     }
 
+    public function accept(Visitor $visitor): void
+    {
+        $visitor->visitImage($this);
+    }
+
     public function add(Element $element): void
     {
         // TODO: Implement add() method.

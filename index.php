@@ -8,6 +8,7 @@ include_once 'ImageProxy.php';
 include_once 'AlignLeft.php';
 include_once 'AlignCenter.php';
 include_once 'AlignRight.php';
+include_once 'BookStatistics.php';
 
 $cap1 = new Section('Capitolul 1');
 $p1 = new Paragraph('Paragraph 1');
@@ -20,11 +21,14 @@ $cap1->add($p3);
 $p4 = new Paragraph('Paragraph 4');
 $cap1->add($p4);
 
-echo 'Without alingment: <br>';
-$cap1->print();
+$cap1->add(new ImageProxy("ImageOne"));
+$cap1->add(new Image("ImageTwo"));
+$cap1->add(new Paragraph("Some text"));
+$cap1->add(new Table("Table 1"));
 
-$p1->setAlignStrategy(new AlignLeft());
-$p2->setAlignStrategy(new AlignCenter());
-$p3->setAlignStrategy(new AlignRight());
-echo 'With alingment: <br>';
+$stats = new BookStatistics();
+$cap1->accept($stats);
+$stats->printStatistics();
+
+
 $cap1->print();

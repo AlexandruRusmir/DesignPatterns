@@ -36,6 +36,26 @@ class Section implements Element
         return $this->elements[$position];
     }
 
+    public function accept(Visitor $visitor): void
+    {
+        $visitor->visitSection($this);
+        if (isset($this->elements)) {
+            foreach ($this->elements as $element) {
+                $element->accept($visitor);
+            }
+        }
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function getElements(): array
+    {
+        return $this->elements;
+    }
+
     public function print(): void
     {
         echo 'Section name: ' . $this->name . '<br>';

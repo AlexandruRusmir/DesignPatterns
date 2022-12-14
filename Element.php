@@ -9,4 +9,6 @@ Interface Element
     public function remove(Element $element): void;
 
     public function get(int $position): ?Element;
+
+    public function accept(Visitor $visitor): void;
 }

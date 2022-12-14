@@ -9,9 +9,30 @@ class TableOfContents implements Element
     /** @var string|null  */
     private ?string $title;
 
+    private array $tableOfContentsElements;
+
     public function __construct(string $title)
     {
         $this->title = $title;
+        $this->tableOfContentsElements = [];
+    }
+
+    public function accept(Visitor $visitor): void
+    {
+        $visitor->visitTableOfContents($this);
+    }
+
+    /**
+     * @return string[]
+     */
+    public function setTableOfContentsElements(array $tableOfContentsElements): void
+    {
+        $this->tableOfContentsElements = $tableOfContentsElements;
+    }
+
+    public function getTableOfContentsElements(): array
+    {
+        return $this->tableOfContentsElements;
     }
 
     public function print(): void
